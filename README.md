@@ -1,6 +1,8 @@
 # Shusha
 
-TODO: Write a gem description
+Game development framework.
+
+Main idea - try to use active record with activemodel with gosu.
 
 ## Installation
 
@@ -22,7 +24,7 @@ TODO: Write usage instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/shusha/fork )
+1. Fork it ( https://github.com/gilort/shusha/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
