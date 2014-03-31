@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'shusha/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'Shusha'
+  spec.name          = 'shusha'
   spec.version       = Shusha::VERSION::STRING
   spec.authors       = ['Andrey Kopylov']
   spec.email         = ['elymse@gmail.com']
   spec.summary       = %q{Game development framework}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+#  spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = ''
   spec.license       = 'MIT'
 

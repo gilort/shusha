@@ -18,13 +18,13 @@ module Shusha
         game_name = args[0]
         self.destination_root = game_name
 
-        if Shusha::VERSION::RC > 0
-          @shusha_version = Shusha.version
-        else
-          @shusha_version = '~> '+[Shusha::VERSION::MAJOR, Shusha::VERSION::MINOR, '0'].join('.')
-        end
+        #if Shusha::VERSION::RC > 0
+        #  @shusha_version = Shusha.version
+        #else
+        #  @shusha_version = '~> '+[Shusha::VERSION::MAJOR, Shusha::VERSION::MINOR, '0'].join('.')
+        #end
 
-        directory 'app', '.'
+        directory self.class.source_root, '.'
       end
       desc 'n PATH', 'Generates a new gamebox game at PATH.'
       alias_method :n, :new
@@ -45,11 +45,11 @@ module Shusha
       desc 'd', 'starts the application in debug'
       alias_method :d, :debug
 
-      desc 'generate [actor|behavior|stage] NAME', 'Gamebox generator, this will generate templated files for you for quicker development'
+      desc 'generate [actor|behavior|stage] NAME', 'Shusha generator, this will generate templated files for you for quicker development'
       def generate(*args)
         run_rake_task("generate:#{args.shift}", *args)
       end
-      desc 'g [actor|behavior|stage] NAME', 'Gamebox generator, this will generate templated files for you for quicker development'
+      desc 'g [actor|behavior|stage] NAME', 'Shusha generator, this will generate templated files for you for quicker development'
       alias_method :g, :generate
 
       protected
@@ -63,7 +63,7 @@ module Shusha
       end
 
       def app_const_base
-        @app_const_base ||= app_name.gsub(/\W/, '_').squeeze('_').camelize
+        @app_const_base ||= app_name.gsub(/\W/, '_').squeeze('_')
       end
 
       def app_name

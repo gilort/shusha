@@ -1,0 +1,7 @@
+path = File.expand_path '../lib/generators/shusha/app/app_generator', File.dirname(__FILE__)
+
+puts path
+
+require path
+
+Shusha::Generators::AppGenerator.start
