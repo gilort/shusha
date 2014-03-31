@@ -27,10 +27,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'mocha'
 
   spec.add_dependency 'gosu'
-  spec.add_dependency 'thor'
   spec.add_dependency 'require_all'
   spec.add_dependency 'listen'
   spec.add_dependency 'activerecord'
   spec.add_dependency 'activemodel'
+  spec.add_dependency 'thor'
 
 end
