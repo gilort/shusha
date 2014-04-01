@@ -1,7 +1,6 @@
-path = File.expand_path '../lib/generators/shusha/app/app_generator', File.dirname(__FILE__)
+require 'require_all'
 
+path = File.expand_path '../lib/generators/shusha', File.dirname(__FILE__)
 puts path
-
-require path
-
+require_all path + '/**/*.rb'
 Shusha::Generators::AppGenerator.start

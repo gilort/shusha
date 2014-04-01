@@ -1,12 +1,7 @@
-require 'rake'
-require 'thor'
-
 module Shusha
   module Generators
 
-    include Rake::DSL
-
-    class AppGenerator < Thor
+    class AppGenerator < BaseGenerator
       include Thor::Actions
 
       def self.source_root
@@ -51,24 +46,6 @@ module Shusha
       end
       desc 'g [actor|behavior|stage] NAME', 'Shusha generator, this will generate templated files for you for quicker development'
       alias_method :g, :generate
-
-      protected
-
-      def print_version
-        puts "Shusha #{Shusha::VERSION::STRING}"
-      end
-
-      def run_rake_task(*args)
-        sh "rake #{args.shift}[#{args.join(',')}]"
-      end
-
-      def app_const_base
-        @app_const_base ||= app_name.gsub(/\W/, '_').squeeze('_')
-      end
-
-      def app_name
-        @app_name ||=  File.basename(destination_root).tr('.', '_')
-      end
     end
   end
 end
