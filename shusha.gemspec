@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-core'
   spec.add_development_dependency 'rspec-mocks'
   spec.add_development_dependency 'rspec-expectations'
-  spec.add_development_dependency 'mocha'
   spec.add_development_dependency 'gamebox'
 
   spec.add_dependency 'gosu'
@@ -32,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'listen'
   spec.add_dependency 'activerecord'
   spec.add_dependency 'activemodel'
-  spec.add_dependency 'active_support'
+  spec.add_dependency 'activesupport'
   spec.add_dependency 'thor'
 
 end

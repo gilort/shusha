@@ -4,11 +4,16 @@ module Shusha
   class Application
     attr_accessor :scenes, :env
 
-    def initialize(*args)
+    def initialize(args={})
       @env = args[:env] || DEVELOPMENT_ENV
     end
 
     def config
+      Configuration.instance
+    end
+
+    #FIXME remove double method
+    def self::config
       Configuration.instance
     end
 

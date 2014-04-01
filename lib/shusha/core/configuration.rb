@@ -1,6 +1,8 @@
+require 'singleton'
+
 module Shusha
   class Configuration
-    include Singleton
+    include ::Singleton
 
     attr_accessor :config_path, :data_path, :time_zone
 
