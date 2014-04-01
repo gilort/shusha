@@ -11,10 +11,11 @@ module Shusha
     VERSION::STRING
   end
 
-  #require "#{SHUSHA_PATH}/version.rb"
-  #require 'require_all'
-  #directory_load_order = %w(application)
-  #directory_load_order.each do |dir|
-  #  require_all "#{SHUSHA_PATH}/#{dir}/**/*.rb"
-  #end
+  def self.configuration
+    Configuration.instance
+  end
+
+  def self.configure
+    yield configuration if block_given?
+  end
 end
