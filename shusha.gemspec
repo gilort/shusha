@@ -34,5 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activesupport'
   spec.add_dependency 'railties'
   spec.add_dependency 'thor'
+  spec.add_dependency 'conject'
 
 end

@@ -7,6 +7,7 @@ require 'active_support/core_ext/array/extract_options'
 
 require 'shusha/application'
 require 'shusha/version'
+require 'gosu'
 
 module Shusha
   extend ActiveSupport::Autoload

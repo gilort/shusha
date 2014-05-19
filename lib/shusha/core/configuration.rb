@@ -6,9 +6,16 @@ module Shusha
       attr_reader :root
       attr_writer :autoload_paths
 
+      attr_accessor :resolution, :fullscreen, :caption
+
       def initialize(root = nil)
         @options ||= {}
         @root = root
+
+        @fullscreen = false
+        @resolution = [600, 800]
+        @caption = 'Game Title'
+
       end
 
       def paths
