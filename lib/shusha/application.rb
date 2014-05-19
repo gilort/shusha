@@ -9,7 +9,7 @@ module Shusha
   class Application
     include ::Singleton
 
-    attr_reader :context, :config, :window
+    attr_reader :context, :config, :windows_manager
     delegate :root, :paths, to: :config
 
 
@@ -17,7 +17,7 @@ module Shusha
       super()
       @context = Conject.default_object_context
       @config  = @context['shusha/configuration']
-      @window  = @context['shusha/window']
+      @windows_manager  = @context['shusha/windows_manager']
 
       add_lib_to_load_path!
       instance_eval(&block) if block_given?

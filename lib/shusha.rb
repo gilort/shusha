@@ -13,7 +13,8 @@ module Shusha
   extend ActiveSupport::Autoload
 
   autoload :Configuration, 'shusha/configuration'
-  autoload :Window, 'shusha/window'
+
+  autoload :WindowsManager, 'shusha/core/windows_manager'
 
   class << self
     attr_accessor :application#, :cache, :logger
@@ -35,6 +36,10 @@ module Shusha
 
     def public_path
       application && Pathname.new(application.paths['public'].first)
+    end
+
+    def start
+      application.window.show
     end
   end
 end
