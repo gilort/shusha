@@ -12,6 +12,9 @@ require 'gosu'
 module Shusha
   extend ActiveSupport::Autoload
 
+  autoload :Configuration, 'shusha/configuration'
+  autoload :Window, 'shusha/window'
+
   class << self
     attr_accessor :application#, :cache, :logger
 
@@ -24,14 +27,6 @@ module Shusha
 
     def root
       application && application.config.root
-    end
-
-    def env
-      @_env ||= ActiveSupport::StringInquirer.new(ENV['SHUSHA_ENV'] || ENV['RACK_ENV'] || 'development')
-    end
-
-    def env=(environment)
-      @_env = ActiveSupport::StringInquirer.new(environment)
     end
 
     def version

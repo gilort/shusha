@@ -1,8 +1,6 @@
-require 'boot'
+require File.expand_path('../boot', __FILE__)
 
-require "active_model"
-require "active_record"
-
+require "shusha"
 
 module <%= app_const_base %>
   class Application < Shusha::Application

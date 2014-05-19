@@ -1,9 +1,11 @@
 module Shusha
   class Window < Gosu::Window
+    construct_with 'shusha/configuration'
+
     def initialize
 
-      super *Shusha.configuration.resolution, Shusha.configuration.fullscreen
-      self.caption = Shusha.configuration.caption
+      super *configuration.resolution, configuration.fullscreen
+      self.caption = configuration.caption
     end
   end
 end
