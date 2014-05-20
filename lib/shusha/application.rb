@@ -1,33 +1,31 @@
 require 'singleton'
 require 'fileutils'
 require 'rails'
-require 'conject'
 require 'active_support/core_ext/hash/keys'
 require 'active_support/core_ext/object/blank'
+require 'active_support/dependencies'
 
 module Shusha
   class Application
     include ::Singleton
 
-    attr_reader :context, :config, :windows_manager
+    attr_reader :config, :windows_manager
     delegate :root, :paths, to: :config
 
 
     def initialize(&block)
       super()
-      @context = Conject.default_object_context
-      @config  = @context['shusha/configuration']
-      @windows_manager  = @context['shusha/windows_manager']
+      @config  = Shusha.context['shusha/configuration']
+      @windows_manager  = Shusha.context['shusha/windows_manager']
 
       add_lib_to_load_path!
       instance_eval(&block) if block_given?
+      ActiveSupport::Dependencies.autoload_paths.unshift(*(config.paths.autoload_paths + config.paths.eager_load + config.paths.autoload_once).uniq)
     end
 
     def add_lib_to_load_path! #:nodoc:
-      path = File.join config.root, 'lib'
-      if File.exist?(path) && !$LOAD_PATH.include?(path)
-        $LOAD_PATH.unshift(path)
-      end
+      path = config.root.join('lib').to_s
+      $LOAD_PATH.unshift(path) if File.exists?(path)
     end
 
     class << self

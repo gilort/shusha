@@ -8,12 +8,12 @@ require 'active_support/core_ext/array/extract_options'
 require 'shusha/application'
 require 'shusha/version'
 require 'gosu'
+require 'conject'
 
 module Shusha
   extend ActiveSupport::Autoload
 
   autoload :Configuration, 'shusha/configuration'
-
   autoload :WindowsManager, 'shusha/core/windows_manager'
 
   class << self
@@ -39,7 +39,11 @@ module Shusha
     end
 
     def start
-      application.window.show
+      application.windows_manager.default_window.show
+    end
+
+    def context
+      @context ||= Conject.default_object_context
     end
   end
 end

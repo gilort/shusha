@@ -3,7 +3,7 @@ module Shusha
     attr_reader :root
     attr_writer :autoload_paths
 
-    attr_accessor :resolution, :fullscreen, :caption
+    attr_accessor :resolution, :fullscreen, :caption, :needs_cursor
 
     def initialize
       @options ||= {}
@@ -12,7 +12,7 @@ module Shusha
       @fullscreen = false
       @resolution = [600, 800]
       @caption = 'Game Title'
-
+      @needs_cursor = true
     end
 
     def paths
@@ -21,27 +21,16 @@ module Shusha
 
         paths.add 'app', eager_load: true, glob: '*'
         paths.add 'resources', glob: '*'
-        paths.add 'app/models', eager_load: true
-        paths.add 'app/views'
-
         paths.add 'app/models/concerns', eager_load: true
 
         paths.add 'lib', load_path: true
-        paths.add 'lib/assets', glob: '*'
-        paths.add 'lib/tasks', glob: '**/*.rake'
-
         paths.add 'config'
-        paths.add 'config/environments', glob: '#{Shusha.env}.rb'
-        paths.add 'config/initializers', glob: '**/*.rb'
-        paths.add 'config/locales', glob: '*.{rb,yml}'
-
         paths.add 'db'
         paths.add 'db/migrate'
 
         paths.add 'config/database', with: 'config/database.yml'
         paths.add 'config/environment', with: 'config/environment.rb'
-        paths.add 'lib/templates'
-        paths.add 'log', with: "log/#{Shusha.env}.log"
+        paths.add 'log', with: 'log/debug.log'
         paths.add 'tmp'
         paths
       end
@@ -78,7 +67,7 @@ module Shusha
     end
 
     def get_root
-      Bundler::SharedHelpers.in_bundle? ? File.dirname(Bundler::SharedHelpers.default_gemfile) : nil
+      Bundler::SharedHelpers.in_bundle? ? Pathname.new(File.dirname(Bundler::SharedHelpers.default_gemfile)).realpath : nil
     end
   end
 end

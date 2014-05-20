@@ -1,15 +1,26 @@
 module Shusha
   autoload :Window, 'shusha/core/window'
+  autoload :WrappedWindow, 'shusha/core/wrapped_window'
 
   class WindowsManager
-    attr_reader :windows
+    attr_reader :current_window
+
     def initialize
-      @windows ||= []
+      @current_window = nil
+      @cached_windows = {}
     end
 
-    def add_window(window_class)
-#      raise 'window_class should be instance of Shusha::Window' unless window_class.is_a? Shusha::Window
-      @windows.push window_class
+    def default_window
+      WrappedWindow.new Shusha::Window
     end
+
+    def show(window_name)
+      @current_window = @cached_windows.include?(window_name)? @cached_windows[window_name] :  create_window window_name
+    end
+
+    def create_window(window_name)
+        @cached_windows[window_name] = WrappedWindow.new window_name.to_s.classify.constantize
+    end
+
   end
 end
