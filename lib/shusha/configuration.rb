@@ -46,7 +46,13 @@ module Shusha
       yaml = Pathname.new(paths['config/database'].first || '')
       raise "Could not load database configuration. No such file - #{yaml}" unless yaml.exist?
 
-      YAML.load(yaml.read) || {}
+      config = YAML.load(yaml.read).symbolize_keys || {}
+
+      config.each do |env, values|
+        values = values.symbolize_keys
+        values[:database] = File.expand_path values[:database], @root if values.include? :database
+        config[env] = values
+      end
     rescue Psych::SyntaxError => e
       raise "YAML syntax error occurred while parsing #{paths['config/database'].first}. " \
               'Please note that YAML must be consistently indented using spaces. Tabs are not allowed. ' \

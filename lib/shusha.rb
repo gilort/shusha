@@ -1,6 +1,7 @@
 require 'pathname'
 
 require 'active_support'
+require 'active_record'
 require 'active_support/dependencies/autoload'
 require 'active_support/core_ext/module/delegation'
 require 'active_support/core_ext/array/extract_options'
