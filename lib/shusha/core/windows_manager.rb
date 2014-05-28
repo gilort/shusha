@@ -14,8 +14,8 @@ module Shusha
       WrappedWindow.new Shusha::Window
     end
 
-    def show(window_name)
-      @current_window = @cached_windows.include?(window_name)? @cached_windows[window_name] :  create_window window_name
+    def window(name)
+      @current_window = @cached_windows.include?(name)? @cached_windows[name] :  create_window(name)
     end
 
     def create_window(window_name)
