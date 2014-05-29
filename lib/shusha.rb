@@ -8,6 +8,7 @@ require 'active_support/core_ext/array/extract_options'
 
 require 'shusha/application'
 require 'shusha/version'
+require 'shusha/core/model'
 require 'gosu'
 require 'conject'
 
@@ -16,6 +17,7 @@ module Shusha
 
   autoload :Configuration, 'shusha/configuration'
   autoload :WindowsManager, 'shusha/core/windows_manager'
+  autoload :Asset, 'shusha/core/asset'
 
   class << self
     attr_accessor :application#, :cache, :logger
