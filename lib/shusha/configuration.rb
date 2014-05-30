@@ -20,8 +20,9 @@ module Shusha
         paths = Rails::Paths::Root.new(@root)
 
         paths.add 'app', eager_load: true, glob: '*'
-        paths.add 'resources', glob: '*'
         paths.add 'app/models/concerns', eager_load: true
+
+        paths.add 'resources/images'
 
         paths.add 'lib', load_path: true
         paths.add 'config'
